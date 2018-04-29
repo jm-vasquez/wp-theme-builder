@@ -10,7 +10,7 @@
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="<?php bloginfo('template_url'); ?>/style.css" rel="stylesheet"/>
+        <link href="<?php bloginfo('template_url'); ?>/style.css?<?php echo time(); ?>" rel="stylesheet"/>
 
 
         <!--[if lt IE 9]>
@@ -42,9 +42,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php bloginfo('home'); ?>"></a>
+                    <a class="navbar-brand" href="<?php bloginfo('home'); ?>">
+                        <?php
+                        if (function_exists('the_custom_logo')) {
+                            the_custom_logo();
+                        }
+                        ?>
+                    </a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
+                <div id="navbar" class="navbar-collapse collapse navbar-right">
                     <?php
                     if (has_nav_menu('main-menu')) {
                         wp_nav_menu(
